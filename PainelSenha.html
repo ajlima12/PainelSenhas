@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Painel de Senhas</title>
+<script>
+        let filaComum = [];
+        let filaEspecial = [];
+ 
+        function gerarSenha() {
+            const novaSenha = Math.floor(Math.random() * 1000);
+            filaComum.push(novaSenha);
+            atualizarExibicao();
+        }
+ 
+        function gerarSenhaEspecial() {
+            const novaSenha = Math.floor(Math.random() * 1000) + 1000; // Senhas especiais começam a partir de 1000
+            filaEspecial.push(novaSenha);
+            atualizarExibicao();
+        }
+ 
+        function atenderComum() {
+            if (filaComum.length > 0) {
+                alert(`Atendendo senha comum: ${filaComum.shift()}`);
+                atualizarExibicao();
+            } else {
+                alert("Não há senhas comuns na fila.");
+            }
+        }
+ 
+        function atenderEspecial() {
+            if (filaEspecial.length > 0) {
+                alert(`Atendendo senha especial: ${filaEspecial.shift()}`);
+                atualizarExibicao();
+            } else {
+                alert("Não há senhas especiais na fila.");
+            }
+        }
+ 
+        function atualizarExibicao() {
+            document.getElementById('filaComum').innerText = `Fila Comum: ${filaComum.join(', ')}`;
+            document.getElementById('filaEspecial').innerText = `Fila Especial: ${filaEspecial.join(', ')}`;
+        }
+</script>
+</head>
+<body>
+<h1>Painel de Senhas</h1>
+<button onclick="gerarSenha()">Gerar Senha Comum</button>
+<button onclick="gerarSenhaEspecial()">Gerar Senha Especial</button>
+<button onclick="atenderComum()">Atender Senha Comum</button>
+<button onclick="atenderEspecial()">Atender Senha Especial</button>
+ 
+    <h2>Filas</h2>
+<div id="filaComum">Fila Comum: </div>
+<div id="filaEspecial">Fila Especial: </div>
+</body>
+</html>
